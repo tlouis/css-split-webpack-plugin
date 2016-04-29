@@ -10,6 +10,10 @@ const getSelLength = (node) => {
     return node.selectors.length;
   }
   if (node.type === 'atrule') {
+    if (!node.nodes) {
+        return 1;
+    }
+    
     return 1 + node.nodes.reduce((memo, n) => {
       return memo + getSelLength(n);
     }, 0);
